@@ -1,14 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Header from './components/Header/Header';
 import Search from './components/Search/Search';
+import teaBackground from '../src/images/tea-background.jpg'
 
 function App() {
   return (
-    <div className='App'>
-      <Header />
-      <Search />
+    <div className='bg-cover bg-no-repeat bg-center h-screen' style={{backgroundImage: `url(${teaBackground})`}}>
+    <div className="bg-black bg-opacity-40 h-full">
+        <Header />
+        <Search />
+      </div>
     </div>
   );
 }
