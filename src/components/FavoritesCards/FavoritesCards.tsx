@@ -5,3 +5,5 @@ const FavoritesCards = () => {
     </div>
   )
 }
+
+export default FavoritesCards
