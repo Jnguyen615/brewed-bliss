@@ -1,24 +1,15 @@
-import TeaCards from "../TeaCards/TeaCards"
-import { useState, useEffect } from 'react'
-import { getTeas } from '../../api-call'
-import { TeaProps} from '../../types'
+// MainDisplay.tsx
+import React from 'react';
+import TeaCards from '../TeaCards/TeaCards';
+import { TeaProps } from '../../types';
 
-const MainDisplay = () => {
-  const [teas, setTeas] = useState<TeaProps[]>([]) 
-  
-  useEffect(() => {
-    getTeas()
-      .then(data => setTeas(data as TeaProps[]))
-      .catch(error => console.error('Error fetching tea data:', error));
-  }, []);
-
+const MainDisplay: React.FC<{ teas: TeaProps[] }> = ({ teas }) => {
   return (
     <main className='grid grid-cols-5'>
       {teas.map(tea => (
         <TeaCards 
-          
-          key={tea.id}
-          id={tea.id}
+          key={tea.name}
+          _id={tea._id}
           name={tea.name}
           description={tea.description}
           colorDescription={tea.colorDescription}
@@ -33,4 +24,4 @@ const MainDisplay = () => {
   );
 }
 
-export default MainDisplay
+export default MainDisplay;

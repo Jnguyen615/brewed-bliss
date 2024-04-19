@@ -1,23 +1,31 @@
+// App.tsx
+import React, { useEffect, useState } from 'react';
+import teaBackground from '../src/images/tea-background.jpg';
 import Header from './components/Header/Header';
 import Search from './components/Search/Search';
-import teaBackground from '../src/images/tea-background.jpg';
 import { getTeas } from '../src/api-call';
-import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import MainDisplay from '../src/components/MainDisplay/MainDisplay';
 import FavoritesPage from './components/FavoritesPage/FavortiesPage';
+import { TeaProps } from './types'
 
 function App() {
+  const [teas, setTeas] = useState<TeaProps[]>([]) 
+  
+
+  useEffect(() => {
+    getTeas()
+      .then(data => setTeas(data as TeaProps[]))
+      .catch(error => console.error('Error fetching tea data:', error));
+  }, []);
 
   return (
-    <div
-      className='bg-cover h-screen'
-      style={{ backgroundImage: `url(${teaBackground})` }}>
+    <div className='bg-cover h-screen' style={{ backgroundImage: `url(${teaBackground})` }}>
       <div className='bg-black bg-opacity-40 flex flex-col justify-center items-center'>
-        <Header />
-        <Search />
+        <Header/>
+        <Search teas={teas} />
         <Routes>
-          <Route path='/' element={<MainDisplay />} />
+          <Route path='/' element={<MainDisplay teas={teas} />} />
           <Route path='/favorites' element={<FavoritesPage/>} />
         </Routes>
       </div>
@@ -26,4 +34,3 @@ function App() {
 }
 
 export default App;
-
