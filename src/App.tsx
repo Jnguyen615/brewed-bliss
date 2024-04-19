@@ -7,7 +7,8 @@ import { getTeas } from '../src/api-call';
 import { Routes, Route } from 'react-router-dom';
 import MainDisplay from '../src/components/MainDisplay/MainDisplay';
 import FavoritesPage from './components/FavoritesPage/FavortiesPage';
-import { TeaProps } from './types'
+import ErrorPage from './components/ErrorPage/ErrorPage';
+import { TeaProps } from './types';
 
 function App() {
   const [teas, setTeas] = useState<TeaProps[]>([]) 
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path='/' element={<MainDisplay teas={teas} />} />
           <Route path='/favorites' element={<FavoritesPage/>} />
+          <Route path='*' element={<ErrorPage />} />
         </Routes>
       </div>
     </div>

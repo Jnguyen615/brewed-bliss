@@ -8,6 +8,7 @@ export interface teaCardProps {
   type: string;
   tasteDescription: string;
   image: string;
+  index: number;
   
 }
 
@@ -21,7 +22,7 @@ export interface TeaProps {
   type: string;
   tasteDescription: string;
   image: string;
-  
+  index: number;
 }
 
 export interface SearchProps {
