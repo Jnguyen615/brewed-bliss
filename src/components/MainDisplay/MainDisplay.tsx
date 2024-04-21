@@ -1,10 +1,8 @@
-// MainDisplay.tsx
-import React from 'react';
 import TeaCards from '../TeaCards/TeaCards';
-import { TeaProps } from '../../types';
+import { MainDisplayProps } from '../../types';
 import ScrollButton from '../ScrollButton/ScrollButton';
 
-const MainDisplay: React.FC<{ teas: TeaProps[] }> = ({ teas }) => {
+const MainDisplay: React.FC<MainDisplayProps> = ({ teas, toggleFavoriteTeas, favoriteTeas }) => {
   return (
     <main>
     <div className='grid grid-cols-5'>
@@ -21,6 +19,8 @@ const MainDisplay: React.FC<{ teas: TeaProps[] }> = ({ teas }) => {
         tasteDescription={tea.tasteDescription}
         image={tea.image}
         index={index}
+        toggleFavoriteTeas={toggleFavoriteTeas}
+        favoriteTeas={favoriteTeas}
         />
       ))}
     </div>

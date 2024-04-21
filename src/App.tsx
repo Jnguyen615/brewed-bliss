@@ -1,4 +1,3 @@
-// App.tsx
 import React, { useEffect, useState } from 'react';
 import teaBackground from '../src/images/tea-background.jpg';
 import Header from './components/Header/Header';
@@ -11,8 +10,18 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import { TeaProps } from './types';
 
 function App() {
-  const [teas, setTeas] = useState<TeaProps[]>([]) 
-  
+  const [teas, setTeas] = useState<TeaProps[]>([]); 
+  const [favoriteTeas, setFavoriteTeas] = useState<TeaProps[]>([]);
+  const [showResults, setShowResults] = useState<boolean>(true);
+
+  const toggleFavoriteTeas = (tea: TeaProps) => {
+    const isFavorited = favoriteTeas.some((favTea) => favTea._id === tea._id);
+    if (isFavorited) {
+      setFavoriteTeas(favoriteTeas.filter((favTea) => favTea._id !== tea._id));
+    } else {
+      setFavoriteTeas([...favoriteTeas, tea]);
+    }
+  };
 
   useEffect(() => {
     getTeas()
@@ -24,10 +33,10 @@ function App() {
     <div className='bg-cover h-screen' style={{ backgroundImage: `url(${teaBackground})` }}>
       <div className='bg-black bg-opacity-40 flex flex-col justify-center items-center'>
         <Header/>
-        <Search teas={teas} />
+        <Search teas={teas} toggleFavoriteTeas={toggleFavoriteTeas} showResults={showResults} favoriteTeas={favoriteTeas} /> 
         <Routes>
-          <Route path='/' element={<MainDisplay teas={teas} />} />
-          <Route path='/favorites' element={<FavoritesPage/>} />
+          <Route path='/' element={ <MainDisplay teas={teas} toggleFavoriteTeas={toggleFavoriteTeas} favoriteTeas={favoriteTeas}/> } />
+          <Route path='/favorites' element={<FavoritesPage setShowResults={setShowResults} favoriteTeas={favoriteTeas} toggleFavoriteTeas={toggleFavoriteTeas}/>} /> 
           <Route path='*' element={<ErrorPage />} />
         </Routes>
       </div>
