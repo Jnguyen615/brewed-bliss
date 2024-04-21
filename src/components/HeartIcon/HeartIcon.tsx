@@ -2,13 +2,14 @@ import React from 'react';
 import { HeartIconProps } from '../../types';
 
 const HeartIcon: React.FC<HeartIconProps> = ({ isFavorite, toggleFavoriteTeas, tea }) => {
-  const handleClick = () => {
+ 
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent event propagation to the parent elements
     toggleFavoriteTeas(tea);
-    
   };
 
   return (
-    <div className='collected-mount-icon' onClick={handleClick}>
+    <div className='collected-mount-icon' onClick={handleFavoriteClick}>
       {isFavorite ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"

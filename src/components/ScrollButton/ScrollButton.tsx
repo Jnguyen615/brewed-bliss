@@ -21,7 +21,7 @@ const ScrollButton = () => {
 
   return (
     <button
-      className={`fixed bottom-4 right-4 text-green-500 font-bold py-2 px-4 rounded ${isVisible ? 'visible' : 'hidden'}`} 
+      className={`fixed bottom-4 right-4 text-green-500 font-bold py-2 px-4 bg-black rounded ${isVisible ? 'visible' : 'hidden'}`} 
       onClick={scrollToTop}
     >
       Top

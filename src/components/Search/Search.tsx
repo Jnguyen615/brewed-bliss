@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TeaProps } from '../../types';
 import TeaCards from '../TeaCards/TeaCards';
 
@@ -24,6 +24,13 @@ const Search: React.FC<SearchProps> = ({ teas, showResults, toggleFavoriteTeas, 
     setFilteredTeas(filteredResults);
     setSearchTerm('');
   };
+
+  useEffect(() => {
+    // Reset filteredTeas state when component unmounts
+    return () => {
+      setFilteredTeas([]);
+    };
+  }, []);
 
   return (
     <div className='h-full flex flex-col items-center justify-center'>

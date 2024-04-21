@@ -30,7 +30,7 @@ function App() {
   }, []);
 
   return (
-    <div className='bg-cover h-screen' style={{ backgroundImage: `url(${teaBackground})` }}>
+    <div className='bg-cover bg-no-repeat bg-fixed' style={{ backgroundImage: `url(${teaBackground})` }}>
       <div className='bg-black bg-opacity-40 flex flex-col justify-center items-center'>
         <Header/>
         <Search teas={teas} toggleFavoriteTeas={toggleFavoriteTeas} showResults={showResults} favoriteTeas={favoriteTeas} /> 

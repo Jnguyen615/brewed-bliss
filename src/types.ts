@@ -11,6 +11,7 @@ export interface teaCardProps {
   index: number;
   toggleFavoriteTeas: (tea: TeaProps) => void
   favoriteTeas: TeaProps[]
+  
 }
 export interface TeaProps {
   _id: string 
